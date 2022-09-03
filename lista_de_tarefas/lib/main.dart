@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget { // Classe inicial para executar o app
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp( // MaterialApp - possui varios parametros para criar o app
+    return MaterialApp( // MaterialApp - possui varios parametros para criar o app
       home: TodoListPgage(), // home - Inicia a tela inicial do app
     );
   }
