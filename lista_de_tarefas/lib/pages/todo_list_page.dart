@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart'; // Importando a biblioteca marterial
+import 'package:lista_de_tarefas/widgets/todo_list_item.dart'; // Importo um widiget criado
 
 class TodoListPgage extends StatefulWidget { // Widget de toda a pagina inicial do app
   TodoListPgage({super.key});
@@ -62,13 +63,11 @@ class _TodoListPgageState extends State<TodoListPgage> {
                   shrinkWrap: true, // Expande  a ListView até a altura maxima possivel
                   children: [ // Filhos da ListView
                     for(String todo in todos) // usando o for para prencher a ListView com itens com forme a lista for sendo acresentada
-                      ListTile( // Item da lista
-                        title: Text('Tarefa: $todo'), // Titulo do item da lista
-                        subtitle: const Text('20/11/2020'), // Subtitulo
-                        leading: const Icon(Icons.save, size: 30,), // Icone do lado esquerdo do item da lista
-                        onTap: () { // onTap - Executa uma função ao clikar no widget
-                          print('Tarefa: $todo');
-                        },
+                      const TodoListItem( // usando o widget criad
+                      ),
+                      const TodoListItem( // usando o widget criad
+                      ),
+                      const TodoListItem( // usando o widget criad
                       ),
                   ],
                 ),
