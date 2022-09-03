@@ -4,36 +4,40 @@ class TodoListPgage extends StatelessWidget { // Widget de toda a pagina inicial
   const TodoListPgage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold( // Scaffold - Todo app precisa começar com esse widget
-      body: Center( // Center - Centraliza os widgets filhos // body - Corpo do widget
-        child: Padding( // Padding - Espaçamento interno 
-          padding: EdgeInsets.all(16), //  Valor do espaçamento em todos os lados
-          child: TextField( // TextField() Campo de texto
-            decoration: InputDecoration( // Decorasção do campo de texto
-              labelText: 'E-mail', // Titulo do campo de texto
-              labelStyle: TextStyle( // Estilo do texto da labelText
-                fontSize: 20, // Tamho da font
+  Widget build(BuildContext context) { // A interface do app é construida dentre desse Widget (classe)
+    return Scaffold( // Scaffold - Todo app precisa começar com esse widget
+      body: Center( // Center - Centraliza todos os widgets filhos
+        child: Padding( // Espaçamento interno 
+          padding: const EdgeInsets.symmetric(horizontal: 16), // valor do espaçamento
+          child: Row( // Organiza os widgets filhos em linha - Horizontal
+            children: [
+              const Expanded( // Expande os widgets filhos até o maximo permitido na tela
+                child: TextField( // Campo de texto
+                  decoration: InputDecoration( // Decoraão do campo de texto
+                    border:  OutlineInputBorder(), // estilo da borda do campo de texto
+                    labelText: 'Adicione uma tarefa', // Titulo do campo de texto
+                    hintText: 'Ex: Estudar', // Texto de exempo do campo de texto
+                  ),
+                )
               ),
-              hintText: 'exemplo@exemplo.com', // mensagem de exemplo para o usuario digitar
-              hintStyle: TextStyle( // Estilo do texto de exemlpo
-                color: Colors.black45, // Cor do texto
+              const SizedBox( // Espaço vazio
+                width: 8, // largura do espaço
               ),
-              //border: OutlineInputBorder(), // Borda do campo de texto
-              //border: InputBorder.none, // Borda sem borda
-              prefixText: 'R\$ ', // prefixText - É utilizado para colicar um texto fixo na esquerda
-              suffixText: 'cm', // suffixText É utilizado para colicar um texto fixo na direita
-            ) ,
-            // obscureText: true, - obscureText - É utilizado para digitar senhas
-            //keyboardType: TextInputType.number, // Campo apenas de numeros
-            style: TextStyle( // Estilo  do texto digitado no campo
-              fontSize:  20, // Tamanho da fonte
-              fontWeight: FontWeight.w700, //  Peso da fonte
-              color:  Colors.red,
-            ),
-          ), 
-        ), 
-        ), 
+              ElevatedButton( // Botão
+                onPressed: () {}, // Função executada ao pressionar o botão
+                style: ElevatedButton.styleFrom( // estilo do botão
+                  primary: const Color(0xff00d7f3), // Cor do botão em hexadecimal
+                  padding: const EdgeInsets.all(14) // Espaçamento interno do botão
+                ),
+                child: const Icon( // Icone
+                  Icons.add, // Tipo de icone
+                  size: 30, // Tamanho do icone
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

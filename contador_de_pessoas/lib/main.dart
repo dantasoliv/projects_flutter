@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding( // Padding - Coloca espaçamento externo nos elementos que estão dentro dele
-              padding: const EdgeInsets.all(40),
+              padding: const EdgeInsets.all(40), // Colocando valor de espaçamento interno em todos os lados
               child: Text(
                 '$count', // Exibindo o valor de uma variavel no widget de texto
                 style: TextStyle(
