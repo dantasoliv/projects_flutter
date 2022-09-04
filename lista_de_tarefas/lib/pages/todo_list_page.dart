@@ -88,7 +88,7 @@ class _TodoListPgageState extends State<TodoListPgage> {
                     ),
                     const SizedBox(width: 8), // Espaço vazio
                     ElevatedButton( // Botão
-                      onPressed: () {}, // Função executada ao pressionar o botão
+                      onPressed: showdeleteTodosConfirmationDialog, // Função executada ao pressionar o botão
                       style: ElevatedButton.styleFrom( // Estilo do botão
                         primary: const Color(0xff00d7f3), // Cor do botão
                         padding: const EdgeInsets.all(14), // Espaçamento interno do botão
@@ -136,6 +136,39 @@ class _TodoListPgageState extends State<TodoListPgage> {
       ),
     );
 
+  }
+
+  void showdeleteTodosConfirmationDialog() { // Função exibir em popup de alerta e deletar todas as taefas da lista
+    showDialog( // exibir um popup de alerta
+      context: context, 
+      builder: (context) => AlertDialog(
+        title: const Text('Limpar tudo?'), // Texto do titulo exibido no popup de alerta
+        content: const Text('Você tem cert eza que deseja apagar todas as tarefas?'), // Texto do contaudo do popup
+        actions: [ // Ações do popup de alerta
+          TextButton( // Botão
+            onPressed: () { // Função que vai ser executada o precionar o botão
+              Navigator.of(context).pop(); // Fecha o p o popup
+            },
+            style: TextButton.styleFrom(primary: const Color(0xff00d7f3)),
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Fecha o p o popup
+              deleteAllTodos();
+            }, 
+            style: TextButton.styleFrom(primary: Colors.red),
+            child: const Text('Limpar Tudo'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void deleteAllTodos() {
+    setState(() { // setState - Atualizando a tela do app 
+      todos.clear(); // Limpando toda a lista de tarefas
+    });
   }
 
 }
