@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget { // Classe inicial para executar o app
   @override
   Widget build(BuildContext context) {
     return MaterialApp( // MaterialApp - possui varios parametros para criar o app
+    debugShowCheckedModeBanner: false, // Removendo o banner de debug (lado superios direito)
       home: TodoListPgage(), // home - Inicia a tela inicial do app
     );
   }
