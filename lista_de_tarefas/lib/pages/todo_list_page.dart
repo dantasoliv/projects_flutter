@@ -14,6 +14,8 @@ class _TodoListPgageState extends State<TodoListPgage> {
   final TextEditingController todoController = TextEditingController();  // Controlador de captura de texto digitado no campo de texto (TextField)
 
   List<Tarefa> todos = [];  // Lista que vai recebaer as tarefas
+  Tarefa? deletedTodo; // Variavel que vai receber as tarefas deletadas 
+  int? deletedTodoPost; // variavel que vai receber posição na lista do item deletado
 
   @override
   Widget build(BuildContext context) { // A interface do app é construida dentre desse Widget (classe)
@@ -104,9 +106,36 @@ class _TodoListPgageState extends State<TodoListPgage> {
   }
 
   void  onDelete(Tarefa tarefa) { // Função  para deletar uma tarefa
-    setState(() {
+
+    deletedTodo = tarefa; // Armazenando a Tarefa na variavel
+    deletedTodoPost = todos.indexOf(tarefa); // Armazeando a possição da tarefa na lista de tarefas
+
+    setState(() { // setState - Atualiza a tela
       todos.remove(tarefa); // Removendo uma tarefa da lista
     });
+
+    ScaffoldMessenger.of(context).clearSnackBars(); // Limpar as mensagens na parte inferior da tela
+    ScaffoldMessenger.of(context).showSnackBar( // Mostra uma mensagem na perte inferior da tela
+      SnackBar(
+        content: Text( 'Tarefa ${tarefa.titulo} foi removida com sucesso', // Texto
+          style: const TextStyle(
+            color: Color(0xff060708), // Cor do texto
+          ),
+        ),
+        backgroundColor: Colors.white,
+        action: SnackBarAction( // Ação que executa uma função ao ser precionada
+          label: 'Desfazer', // Texto da acão
+          textColor: const Color(0xff00d7f3),
+          onPressed: () { // Função que vai ser executado ao precionar o texto
+            setState(() { // setState - Atualiza a tela
+              todos.insert(deletedTodoPost!, deletedTodo!);
+            });
+          },
+        ),
+        duration: const Duration(seconds: 5), // Duração do tempo em que a mensagem sera exibida na tela
+      ),
+    );
+
   }
 
 }
