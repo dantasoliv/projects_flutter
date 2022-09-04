@@ -71,6 +71,7 @@ class _TodoListPgageState extends State<TodoListPgage> {
                       for(Tarefa todo in todos) // usando o for para prencher a ListView com itens com forme a lista for sendo acresentada
                          TodoListItem( // usando o widget criado
                           tarefa: todo,
+                          onDelete: onDelete,
                         ),
                     ],
                   ),
@@ -101,4 +102,11 @@ class _TodoListPgageState extends State<TodoListPgage> {
       ),
     );
   }
+
+  void  onDelete(Tarefa tarefa) { // Função  para deletar uma tarefa
+    setState(() {
+      todos.remove(tarefa); // Removendo uma tarefa da lista
+    });
+  }
+
 }
