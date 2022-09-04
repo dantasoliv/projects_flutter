@@ -1,12 +1,14 @@
 // Widget TodoListItem
 
 import 'package:flutter/material.dart'; // Importando a biblioteca Material
+import 'package:intl/intl.dart';
+import 'package:lista_de_tarefas/models/tarefa.dart';
 
 //Criando um widget Stateless  
 class TodoListItem extends StatelessWidget {
-  const TodoListItem({super.key, required this.titulo});
+  const TodoListItem({super.key, required this.tarefa});
 
-  final String titulo; // variavel que vai receber o titulo da tarefa no construtar da classe do widget
+  final Tarefa tarefa;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,13 @@ class TodoListItem extends StatelessWidget {
       child: Column( // Column - Organiza os widgets filhos em uma coluna (horizontal)
         crossAxisAlignment: CrossAxisAlignment.start, // Alinhando os widgets filhos a direita
         children: [ // children - Filhos
-          const Text( // Widget de Texto
-            '20/11/2020', // Texto
-            style: TextStyle( // Estilo do texto
+          Text( // Widget de Texto
+            DateFormat('dd/MM/yyyy - HH:mm').format(tarefa.data), // Formatando a data
+            style: const TextStyle( // Estilo do texto
             ),
             ),
           Text( // Widget de texto
-            titulo, // Usando pvalor da variva titulo para preencher o texto
+            tarefa.titulo, // Usando pvalor da variva titulo para preencher o texto
             style: const TextStyle( // Estlo do texto
               fontSize: 16, // Tamanho da fonte
               fontWeight: FontWeight.w600 // Peso da fonte

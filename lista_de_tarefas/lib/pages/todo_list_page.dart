@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; // Importando a biblioteca marterial
 import 'package:lista_de_tarefas/widgets/todo_list_item.dart'; // Importo um widiget criado
+import 'package:lista_de_tarefas/models/tarefa.dart';
 
 class TodoListPgage extends StatefulWidget { // Widget de toda a pagina inicial do app
   TodoListPgage({super.key});
@@ -12,7 +13,7 @@ class _TodoListPgageState extends State<TodoListPgage> {
 
   final TextEditingController todoController = TextEditingController();  // Controlador de captura de texto digitado no campo de texto (TextField)
 
-  List<String> todos = [];  // Lista que vai recebaer as tarefas
+  List<Tarefa> todos = [];  // Lista que vai recebaer as tarefas
 
   @override
   Widget build(BuildContext context) { // A interface do app é construida dentre desse Widget (classe)
@@ -43,7 +44,11 @@ class _TodoListPgageState extends State<TodoListPgage> {
                       onPressed: () { // Função executada ao pressionar o botão
                         String text = todoController.text; // capturando o texto digitado no TextField com o controler
                         setState(() { // setState - Atualiza o valor da lista ou variael
-                          todos.add(text); // Adicinando o texto capturado em uma lista
+                          Tarefa novatarefa = Tarefa(
+                            titulo: text, 
+                            data: DateTime.now(),
+                            );
+                          todos.add(novatarefa); // Adicinando o texto capturado em uma lista
                         });
                         todoController.clear();
                       }, 
@@ -63,9 +68,9 @@ class _TodoListPgageState extends State<TodoListPgage> {
                   child: ListView( // ListView - Lista de itens
                     shrinkWrap: true, // Expande  a ListView até a altura maxima possivel
                     children: [ // Filhos da ListView
-                      for(String todo in todos) // usando o for para prencher a ListView com itens com forme a lista for sendo acresentada
+                      for(Tarefa todo in todos) // usando o for para prencher a ListView com itens com forme a lista for sendo acresentada
                          TodoListItem( // usando o widget criado
-                          titulo: todo,
+                          tarefa: todo,
                         ),
                     ],
                   ),
