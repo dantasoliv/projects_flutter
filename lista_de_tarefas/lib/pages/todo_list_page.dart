@@ -143,7 +143,7 @@ class _TodoListPgageState extends State<TodoListPgage> {
       context: context, 
       builder: (context) => AlertDialog(
         title: const Text('Limpar tudo?'), // Texto do titulo exibido no popup de alerta
-        content: const Text('Você tem cert eza que deseja apagar todas as tarefas?'), // Texto do contaudo do popup
+        content: const Text('Você tem certeza que deseja apagar todas as tarefas?'), // Texto do contaudo do popup
         actions: [ // Ações do popup de alerta
           TextButton( // Botão
             onPressed: () { // Função que vai ser executada o precionar o botão
